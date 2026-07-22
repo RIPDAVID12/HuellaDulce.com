@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huella Dulce - Postres Caseros y Antojos en Honduras</title>
+    <!-- Metadatos SEO y Estrategia Digital -->
+    <meta name="description" content="Disfruta de los mejores postres caseros, waffles, crepas y minidonas hechos con amor por Josué y Lilian en Huella Dulce. ¡Haz tu pedido por WhatsApp!">
+    <meta name="keywords" content="postres caseros, waffles, crepas, minidonas, repostería, Huella Dulce, Honduras">
+    <meta name="author" content="Josué Zapata y Lilian Herrera">
+    
+    <!-- Open Graph para Redes Sociales -->
+    <meta property="og:title" content="Huella Dulce - Postres Caseros">
+    <meta property="og:description" content="Marcando huella en cada antojo. ¡Pide tus waffles y crepas favoritos!">
+    <meta property="og:type" content="website">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --azul-turquesa: #29b6d7;
+            --azul-claro: #e6f7fa;
+            --marron-chocolate: #5c3a21;
+            --rosa-dona: #ff9ebb;
+            --blanco-crema: #fdfbf7;
+            --texto-oscuro: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background-color: var(--blanco-crema);
+            color: var(--texto-oscuro);
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+            color: var(--marron-chocolate);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .btn-rosa {
+            background-color: var(--rosa-dona);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.1rem;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            display: inline-block;
+        }
+
+        .btn-rosa:hover {
+            transform: scale(1.05);
+            background-color: #ff85a7;
+        }
+
+        /* --- ENCABEZADO --- */
+        header {
+            background-color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-texto {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--marron-chocolate);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--marron-chocolate);
+            transition: color 0.2s;
+        }
+
+        nav ul li a:hover {
+            color: var(--azul-turquesa);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 50px;
+        }
+
+        .hero-texto {
+            flex: 1;
+        }
+
+        .hero-texto h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-texto p {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #666;
+        }
+
+        .hero-imagen {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-imagen img {
+            width: 100%;
+            max-width: 450px;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        /* --- MENÚ / TIENDA --- */
+        .menu-section {
+            background-color: var(--azul-claro);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .menu-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+
+        .menu-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            color: #555;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .menu-card {
+            background-color: white;
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .menu-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .menu-card p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.5;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .btn-comprar {
+            background-color: var(--azul-turquesa);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 0.95rem;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .btn-comprar:hover {
+            background-color: #219ab5;
+        }
+
+        /* --- SECCIÓN NOSOTROS --- */
+        .nosotros {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 50px;
+        }
+
+        .nosotros-imagen {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .nosotros-imagen img {
+            width: 100%;
+            max-width: 400px;
+            height: 450px;
+            object-fit: cover;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .nosotros-texto {
+            flex: 1;
+        }
+
+        .nosotros-texto h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .nosotros-texto p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            color: #444;
+            margin-bottom: 15px;
+        }
+
+        /* --- ESTRATEGIA: EMAIL MARKETING & ANALYTICS (NUEVO) --- */
+        .marketing-section {
+            background-color: #fff;
+            padding: 60px 5%;
+            text-align: center;
+            border-top: 2px solid var(--azul-claro);
+            border-bottom: 2px solid var(--azul-claro);
+        }
+
+        .marketing-section h3 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .marketing-section p {
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .newsletter-form input {
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: 1px solid #ccc;
+            flex: 1;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .newsletter-form button {
+            background-color: var(--marron-chocolate);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-family: 'Fredoka', sans-serif;
+            cursor: pointer;
+        }
+
+        /* --- SECCIÓN DE ANÁLISIS Y MÉTRICAS (Para Defensa) --- */
+        .metrics-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 5%;
+            text-align: center;
+        }
+
+        .metrics-section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 10px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .metric-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border-left: 5px solid var(--azul-turquesa);
+        }
+
+        .metric-card h4 {
+            font-size: 1.8rem;
+            color: var(--marron-chocolate);
+            margin-bottom: 5px;
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        .metric-card p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--marron-chocolate);
+            color: white;
+            text-align: center;
+            padding: 40px 5%;
+        }
+
+        footer h2 {
+            color: var(--azul-turquesa);
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .contacto-info {
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+        }
+
+        .contacto-info p {
+            margin: 8px 0;
+        }
+
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 20px;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* Botón flotante de WhatsApp (Integración de Herramientas) */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25d366;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-family: 'Fredoka', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .hero, .nosotros {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+            .hero-texto h1 {
+                font-size: 2.5rem;
+            }
+            .newsletter-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- BOTÓN FLOTANTE WHATSAPP -->
+    <a href="https://wa.me/50492222639?text=Hola,%20quiero%20hacer%20un%20pedido%20en%20Huella%20Dulce" target="_blank" class="whatsapp-float">
+        📱 Pedir por WhatsApp
+    </a>
+
+    <!-- MENÚ DE NAVEGACIÓN -->
+    <header>
+        <div class="logo-container">
+            <img src="img/laHuellaDulce-Photoroom.png" alt="Logo Huella Dulce" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;">
+            <span class="logo-texto">Huella Dulce</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#menu">Nuestro Menú</a></li>
+                <li><a href="#nosotros">Nosotros</a></li>
+                <li><a href="#estrategia">Estrategia</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- BIENVENIDA -->
+    <section class="hero" id="inicio">
+        <div class="hero-texto">
+            <h1>Marcando Huella en cada antojo</h1>
+            <p>Hechos en casa con ingredientes premium y muchísimo amor por Josué & Lilian.</p>
+            <a href="#menu" class="btn-rosa">¡Ver Antojos!</a>
+        </div>
+        <div class="hero-imagen">
+            <img src="img/tentador.jpeg" alt="Postres tentadores">
+        </div>
+    </section>
+
+    <!-- MENÚ / TIENDA -->
+    <section class="menu-section" id="menu">
+        <h2>Nuestros Caprichos</h2>
+        <p class="menu-subtitle">¡Elige tu favorito y pídelo al instante!</p>
+        
+        <div class="menu-grid">
+            <div class="menu-card">
+                <img src="img/waffles.jpeg" alt="Waffles">
+                <div>
+                    <h3>Waffles</h3>
+                    <p>Crujientes por fuera, suaves por dentro. Perfectos con helado e hilos de chocolate.</p>
+                </div>
+                <a href="https://wa.me/50492222639?text=Hola,%20quiero%20ordenar%20unos%20Waffles" target="_blank" class="btn-comprar">Pedir Waffles</a>
+            </div>
+            <div class="menu-card">
+                <img src="img/crepas.jpeg" alt="Crepas">
+                <div>
+                    <h3>Crepas</h3>
+                    <p>Finas, delicadas y deliciosamente rellenas de Nutella, dulce de leche o frutas.</p>
+                </div>
+                <a href="https://wa.me/50492222639?text=Hola,%20quiero%20ordenar%20unas%20Crepas" target="_blank" class="btn-comprar">Pedir Crepas</a>
+            </div>
+            <div class="menu-card">
+                <img src="img/pandepan.jpeg" alt="Pan de Pan">
+                <div>
+                    <h3>Pan de Pan</h3>
+                    <p>Nuestra receta tradicional y reconfortante. Esponjoso, casero y con el sabor de siempre.</p>
+                </div>
+                <a href="https://wa.me/50492222639?text=Hola,%20quiero%20ordenar%20Pan%20de%20Pan" target="_blank" class="btn-comprar">Pedir Pan de Pan</a>
+            </div>
+            <div class="menu-card">
+                <img src="img/minidonas.jpeg" alt="Minidonas">
+                <div>
+                    <h3>Minidonas</h3>
+                    <p>Pequeños bocados de pura felicidad. Glaseadas y decoradas con divertidas chispas.</p>
+                </div>
+                <a href="https://wa.me/50492222639?text=Hola,%20quiero%20ordenar%20Minidonas" target="_blank" class="btn-comprar">Pedir Minidonas</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="nosotros" id="nosotros">
+        <div class="nosotros-imagen">
+            <img src="img/lilianyyo.jpeg" alt="Lilian y Josué">
+        </div>
+        <div class="nosotros-texto">
+            <h2>La Huella detrás del Sabor</h2>
+            <p>¡Hola! Somos <strong>Josué Zapata</strong> y <strong>Lilian Herrera</strong>, las manos y corazones detrás de cada dulce creación.</p>
+            <p>Huella Dulce nació de nuestra pasión compartida por la repostería. Creemos que un buen postre no solo alegra el día, sino que crea momentos inolvidables.</p>
+            <p>¡Gracias por dejarnos endulzar tu vida!</p>
+        </div>
+    </section>
+
+    <!-- ESTRATEGIA DIGITAL Y MARKETING (Email Marketing y Captación) -->
+    <section class="marketing-section" id="estrategia">
+        <h3>Únete al Club de Antojos 💌</h3>
+        <p>Suscríbete para recibir promociones exclusivas, nuevos sabores y cupones de descuento en tu correo.</p>
+        <form class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte a Huella Dulce!');">
+            <input type="email" placeholder="Ingresa tu correo electrónico..." required>
+            <button type="submit">Suscribirme</button>
+        </form>
+    </section>
+
+    <!-- ANÁLISIS Y RESULTADOS ESPERADOS (KPIs para tu defensa) -->
+    <section class="metrics-section">
+        <h2>Análisis y Proyecciones del Proyecto</h2>
+        <p style="color: #666;">Métricas estimadas para medir el impacto digital de Huella Dulce</p>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <h4>+500</h4>
+                <p>Visitas mensuales estimadas al sitio web</p>
+            </div>
+            <div class="metric-card">
+                <h4>15%</h4>
+                <p>Tasa de conversión esperada a pedidos por WhatsApp</p>
+            </div>
+            <div class="metric-card">
+                <h4>85%</h4>
+                <p>Retención de clientes recurrentes locales</p>
+            </div>
+            <div class="metric-card">
+                <h4>SEO</h4>
+                <p>Optimización para búsquedas locales en Honduras</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <h2>¿Listo para un antojo?</h2>
+        <div class="contacto-info">
+            <p>📍 Haz tu pedido en línea - Cobertura en nuestra zona</p>
+            <p>📱 WhatsApp: <strong>+504 9222-2639</strong> </p>
+            <p>📷 Instagram: <strong>huelladulce_12</strong> </p>
+            <p>⏰ Horario: ¡Atendiendo tus momentos más dulces!</p>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2026 Huella Dulce. Creado con amor por Josué & Lilian.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
