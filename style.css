@@ -431,96 +431,119 @@ header nav ul li a:hover {
 }
 
 /* --- VISTA 3D Y ESTÉTICA DE PLATO --- */
+/* =========================================================
+   EFECTO 3D AVANZADO Y CAPAS DINÁMICAS
+   ========================================================= */
+
 .customizer-3d {
-    flex: 1;
-    min-width: 300px;
-    max-width: 450px;
-    perspective: 1200px;
-    text-align: center;
-    background: white;
-    padding: 30px;
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(92, 58, 33, 0.08);
+    perspective: 1200px; /* Profundidad tridimensional */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
 }
 
 .plate {
     position: relative;
-    width: 280px;
-    height: 280px;
-    margin: 0 auto;
-    transform-style: preserve-3d;
-    transition: transform 0.15s ease-out;
-    transform: rotateX(10deg) rotateY(0deg);
-}
-
-.plate-base {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 280px;
-    height: 280px;
-    background: radial-gradient(circle at 50% 45%, #ffffff 55%, #f4f4f4 75%, #e2e2e2 100%);
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(145deg, #ffffff, #f0f0f0);
     border-radius: 50%;
-    box-shadow: 0 20px 35px rgba(92, 58, 33, 0.2), inset 0 0 0 6px #ffffff, inset 0 0 0 9px #dcdcdc;
-    transform: translate(-50%, -50%) translateZ(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15), 
+                inset 0 2px 5px rgba(255,255,255,0.8),
+                inset 0 -5px 15px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    transition: transform 0.1s ease-out;
 }
 
 .preview-img-3d {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 190px;
-    height: 190px;
+    width: 82%;
+    height: 82%;
     object-fit: cover;
     border-radius: 50%;
-    transform: translate(-50%, -50%) translateZ(15px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.18);
-    transition: opacity 0.25s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transform: translateZ(20px); /* Eleva la foto del plato en el espacio 3D */
 }
 
-.stickers {
+/* Capa contenedora de toppings 3D */
+.toppings-3d-layer {
     position: absolute;
     inset: 0;
+    transform-style: preserve-3d;
     pointer-events: none;
 }
 
+/* Estilo individual de cada ingrediente flotante 3D */
 .sticker {
     position: absolute;
-    font-size: 1.6rem;
+    transform: scale(0) translateZ(0px);
     opacity: 0;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 4px 8px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    transform: translateZ(35px) scale(0.5);
-    transition: opacity 0.25s ease, transform 0.25s ease;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+.topping-badge {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 50%;
+    font-size: 22px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.25), 
+                0 2px 4px rgba(0,0,0,0.1);
+    border: 2px solid rgba(255,255,255,0.8);
+}
+
+/* Posiciones estratégicas distribuidas de forma natural sobre el plato */
+.sticker-fresa { top: 22%; left: 25%; }
+.sticker-almendra { top: 58%; left: 20%; }
+.sticker-chispitas { top: 28%; right: 22%; }
+.sticker-oreo { top: 62%; right: 25%; }
+
+/* Cuando el usuario selecciona el topping, se activa con un efecto "Pop" 3D */
 .sticker.show {
+    transform: scale(1) translateZ(45px); /* Salta hacia adelante en 3D */
     opacity: 1;
-    transform: translateZ(35px) scale(1);
 }
 
-.sticker-fresa { top: 8%; left: 25%; }
-.sticker-almendra { top: 12%; right: 18%; }
-.sticker-chispitas { bottom: 12%; left: 18%; }
-.sticker-oreo { bottom: 8%; right: 22%; }
-
+/* SALSAS DINÁMICAS CON EFECTO DE RELIEVE 3D */
 .salsa-drip {
     position: absolute;
-    inset: 0;
+    inset: 25px;
     border-radius: 50%;
     opacity: 0;
-    transform: translateZ(20px);
-    transition: opacity 0.25s ease;
     pointer-events: none;
+    transition: all 0.4s ease;
+    transform: translateZ(30px); /* Se sitúan flotando justo sobre la foto */
+    mix-blend-mode: multiply;
 }
 
-.salsa-drip.show { opacity: 0.45; }
+/* Estilo realista tipo almíbar/salsa derramada con brillos */
+.salsa-dulce-visual.show {
+    opacity: 0.85;
+    background: radial-gradient(circle, transparent 40%, rgba(212, 115, 33, 0.65) 75%),
+                linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+    box-shadow: inset 0 0 15px rgba(139, 69, 19, 0.4);
+}
 
-.salsa-dulce-visual { background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(193, 122, 61, 0.8) 85%); }
-.salsa-choco-visual { background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(74, 43, 24, 0.85) 85%); }
-.salsa-leche-visual { background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(243, 229, 200, 0.9) 85%); }
+.salsa-choco-visual.show {
+    opacity: 0.9;
+    background: radial-gradient(circle, transparent 40%, rgba(77, 38, 4, 0.75) 75%),
+                linear-gradient(135deg, rgba(255,255,255,0.25), transparent);
+    box-shadow: inset 0 0 15px rgba(40, 20, 2, 0.5);
+}
+
+.salsa-leche-visual.show {
+    opacity: 0.85;
+    background: radial-gradient(circle, transparent 40%, rgba(255, 255, 240, 0.75) 75%),
+                linear-gradient(135deg, rgba(255,255,255,0.4), transparent);
+    box-shadow: inset 0 0 15px rgba(200, 200, 180, 0.4);
+}
 
 .hint {
     margin-top: 20px;

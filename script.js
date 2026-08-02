@@ -4,15 +4,16 @@
 // =========================================================
 
 document.addEventListener('DOMContentLoaded', () => {
-
-    document.addEventListener('DOMContentLoaded', () => {
-    // ---------- MENÚ HAMBURGUESA MÓVIL ----------
+    // ---------- MENÚ HAMBURGUESA MÓVIL (CORREGIDO) ----------
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', () => {
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Evita conflictos con otros clics
             navMenu.classList.toggle('active');
+            
+            // Cambia el icono entre ☰ y ✕
             if (navMenu.classList.contains('active')) {
                 menuToggle.textContent = '✕';
             } else {
@@ -20,15 +21,23 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Ocultar menú al hacer clic en un enlace de navegación
-        navMenu.querySelectorAll('a').forEach(link => {
+        // Ocultar el menú automáticamente al hacer clic en cualquier enlace de la lista
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 menuToggle.textContent = '☰';
             });
         });
+
+        // Ocultar el menú si hacen clic fuera de él en la pantalla
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                menuToggle.textContent = '☰';
+            }
+        });
     }
-});
    
 
     // ---------- EFECTO 3D DEL PLATO (Más pronunciado) ----------
@@ -64,10 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const bases = {
         waffle: {
-            label: 'Waffle', img: 'img/waffles.jpeg', price: 70
+            label: 'Waffle', img: 'img/waflesnew.jpeg', price: 70
         },
         crepa: {
-            label: 'Crepa', img: 'img/crepas.jpeg', price: 65
+            label: 'Crepa', img: 'img/crepasnew.jpeg', price: 65
         },
         minidona: {
             label: 'Minidonas', img: 'img/minidonas.jpeg',
