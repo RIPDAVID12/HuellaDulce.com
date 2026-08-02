@@ -899,6 +899,7 @@ footer h2 {
     .customizer-3d {
     perspective: 1000px; /* Vital para darle profundidad real 3D */
 }
+}
 
 .plate {
     transition: transform 0.1s ease-out;
@@ -1105,6 +1106,99 @@ header nav ul {
     }
 }
 
+/* ==========================================================================
+   BOTÓN DE WHATSAPP Y PEDIDOS
+   ========================================================================== */
 
-
+/* Botón flotante clásico en la esquina inferior */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background-color: #25d366;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: transform 0.2s, background-color 0.2s;
 }
+
+.whatsapp-float:hover {
+    transform: scale(1.05);
+    background-color: #20ba5a;
+}
+
+/* Botón principal de checkout "Enviar todo el pedido por WhatsApp" */
+.btn-whatsapp-real {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(135deg, #25d366 0%, #1ebd56 100%);
+    color: #ffffff !important;
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Fredoka', sans-serif;
+    margin-top: 15px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-whatsapp-real:hover {
+    background: linear-gradient(135deg, #22bf5b 0%, #1a9e48 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45);
+}
+
+.btn-whatsapp-real svg,
+.whatsapp-btn-icon {
+    width: 22px !important;
+    height: 22px !important;
+    flex-shrink: 0;
+    fill: #ffffff;
+}
+
+/* ==========================================================================
+   NOTIFICACIÓN FLOTANTE (TOAST)
+   ========================================================================== */
+#toastNotificacion {
+    position: fixed;
+    bottom: 25px; /* Cambiado a la parte inferior para no tapar la nav */
+    left: 25px;
+    background: #ffffff;
+    color: #5c3a21;
+    padding: 14px 22px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    border-left: 6px solid #25d366;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 15px;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(30px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+#toastNotificacion.mostrar {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+
+
+

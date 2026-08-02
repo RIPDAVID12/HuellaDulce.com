@@ -1,36 +1,22 @@
-// =========================================================
-// Huella Dulce - Arma tu Antojo
-// Efecto 3D mejorado + calculadora de precio en vivo
-// =========================================================
-
 document.addEventListener('DOMContentLoaded', () => {
-    // ---------- MENÚ HAMBURGUESA MÓVIL (CORREGIDO) ----------
+    // MENÚ HAMBURGUESA
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
 
     if (menuToggle && navMenu) {
         menuToggle.addEventListener('click', (e) => {
-            e.stopPropagation(); // Evita conflictos con otros clics
+            e.stopPropagation();
             navMenu.classList.toggle('active');
-            
-            // Cambia el icono entre ☰ y ✕
-            if (navMenu.classList.contains('active')) {
-                menuToggle.textContent = '✕';
-            } else {
-                menuToggle.textContent = '☰';
-            }
+            menuToggle.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
         });
 
-        // Ocultar el menú automáticamente al hacer clic en cualquier enlace de la lista
-        const navLinks = navMenu.querySelectorAll('a');
-        navLinks.forEach(link => {
+        navMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
                 menuToggle.textContent = '☰';
             });
         });
 
-        // Ocultar el menú si hacen clic fuera de él en la pantalla
         document.addEventListener('click', (e) => {
             if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
                 navMenu.classList.remove('active');
@@ -38,9 +24,8 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-   
 
-    // ---------- EFECTO 3D DEL PLATO (Más pronunciado) ----------
+    // EFECTO 3D EN EL PLATO
     const preview3d = document.getElementById('preview3d');
     const plate = document.getElementById('plate');
 
@@ -49,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const rect = preview3d.getBoundingClientRect();
             const x = (clientX - rect.left) / rect.width - 0.5;
             const y = (clientY - rect.top) / rect.height - 0.5;
-            // Se aumentó la intensidad de los grados para que se vea mucho más 3D
             plate.style.transform = `rotateY(${x * 50}deg) rotateX(${15 - y * 45}deg)`;
         };
 
@@ -58,26 +42,29 @@ document.addEventListener('DOMContentLoaded', () => {
             plate.style.transform = 'rotateX(15deg) rotateY(0deg)';
         });
         preview3d.addEventListener('touchmove', (e) => {
-            if (e.touches[0]) {
-                rotate(e.touches[0].clientX, e.touches[0].clientY);
-            }
+            if (e.touches[0]) rotate(e.touches[0].clientX, e.touches[0].clientY);
         }, { passive: true });
         preview3d.addEventListener('touchend', () => {
             plate.style.transform = 'rotateX(15deg) rotateY(0deg)';
         });
     }
 
-    // ---------- ARMADOR / CALCULADORA ----------
+    // NOTIFICACIÓN TOAST
+    const toast = document.getElementById('toastNotificacion');
+
+    function mostrarNotificacion() {
+        if (!toast) return;
+        toast.classList.add('mostrar');
+        setTimeout(() => toast.classList.remove('mostrar'), 2200);
+    }
+
+    // BASE DE DATOS DE PRODUCTOS Y OPCIONES
     const baseButtons = document.querySelectorAll('.base-btn');
     if (baseButtons.length === 0) return;
 
     const bases = {
-        waffle: {
-            label: 'Waffle', img: 'img/waflesnew.jpeg', price: 70
-        },
-        crepa: {
-            label: 'Crepa', img: 'img/crepasnew.jpeg', price: 65
-        },
+        waffle: { label: 'Waffle', img: 'img/waflesnew.jpeg', price: 70 },
+        crepa: { label: 'Crepa', img: 'img/crepasnew.jpeg', price: 65 },
         minidona: {
             label: 'Minidonas', img: 'img/minidonas.jpeg',
             variants: [
@@ -100,14 +87,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const variantBox = document.getElementById('variantBox');
     const summaryText = document.getElementById('summaryText');
     const totalPriceEl = document.getElementById('totalPrice');
-    const whatsappBtn = document.getElementById('whatsappOrderBtn');
+    
     const toppingInputs = document.querySelectorAll('.toppings-selector input');
     const salsaInputs = document.querySelectorAll('.salsa-selector input');
-    const salsaVisuals = document.querySelectorAll('.salsa-drip');
+    const salsaVisuals = document.querySelectorAll('.salsa-visual');
+
+    const btnAgregarCarrito = document.getElementById('btnAgregarCarrito');
+    const carritoContainer = document.getElementById('carritoContainer');
+    const carritoItemsList = document.getElementById('carritoItemsList');
+    const carritoGranTotal = document.getElementById('carritoGranTotal');
+    const whatsappOrderBtn = document.getElementById('whatsappOrderBtn');
 
     let currentBaseKey = 'waffle';
     let currentVariantLabel = '';
     let currentVariantPrice = bases.waffle.price;
+    let carritoDeCompras = [];
 
     function buildVariantSelector(baseKey) {
         variantBox.innerHTML = '';
@@ -134,7 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             variantBox.appendChild(select);
-
             currentVariantPrice = base.variants[0].price;
             currentVariantLabel = base.variants[0].label;
         } else {
@@ -176,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        let salsaLabel = '';
+        const salsaLabels = [];
         salsaInputs.forEach((input) => {
             const isVisualNeeded = input.dataset.visual;
             salsaVisuals.forEach((visual) => {
@@ -185,7 +178,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             if (input.checked) {
-                salsaLabel = input.nextElementSibling.textContent.trim();
+                salsaLabels.push(input.nextElementSibling.textContent.trim());
             }
         });
 
@@ -193,24 +186,100 @@ document.addEventListener('DOMContentLoaded', () => {
             ? `${bases[currentBaseKey].label} (${currentVariantLabel})`
             : bases[currentBaseKey].label;
 
-        const total = currentVariantPrice + toppingsTotal;
+        const subtotalUnitario = currentVariantPrice + toppingsTotal;
 
         let summary = baseLabel;
         if (toppingsLabels.length) summary += ` + ${toppingsLabels.join(', ')}`;
-        if (salsaLabel && salsaLabel.toLowerCase() !== 'sin salsa') {
-            summary += ` + ${salsaLabel}`;
+        if (salsaLabels.length) {
+            summary += ` + ${salsaLabels.join(' y ')}`;
         } else {
             summary += ` (Sin salsa)`;
         }
 
         summaryText.textContent = summary;
-        totalPriceEl.textContent = `L${total}`;
-
-        if (whatsappBtn) {
-            const message = `Hola, quiero pedir: ${summary}. Total aproximado: L${total}`;
-            whatsappBtn.href = `https://wa.me/50492222639?text=${encodeURIComponent(message)}`;
-        }
+        totalPriceEl.textContent = `L${subtotalUnitario}`;
     }
+
+    if (btnAgregarCarrito) {
+        btnAgregarCarrito.addEventListener('click', () => {
+            let toppingsLabels = [];
+            let toppingsTotal = 0;
+            toppingInputs.forEach(input => {
+                if (input.checked) {
+                    toppingsLabels.push(input.nextElementSibling.textContent.trim());
+                    toppingsTotal += Number(input.dataset.price);
+                }
+            });
+
+            let salsaLabels = [];
+            salsaInputs.forEach(input => {
+                if (input.checked) salsaLabels.push(input.nextElementSibling.textContent.trim());
+            });
+
+            const baseLabel = currentVariantLabel && bases[currentBaseKey].variants
+                ? `${bases[currentBaseKey].label} (${currentVariantLabel})`
+                : bases[currentBaseKey].label;
+
+            let desc = baseLabel;
+            if (toppingsLabels.length) desc += ` + ${toppingsLabels.join(', ')}`;
+            if (salsaLabels.length) {
+                desc += ` + ${salsaLabels.join(' y ')}`;
+            } else {
+                desc += ` (Sin salsa)`;
+            }
+
+            let unitPrice = currentVariantPrice + toppingsTotal;
+
+            carritoDeCompras.push({
+                descripcion: desc,
+                precio: unitPrice
+            });
+
+            actualizarVistaCarrito();
+            mostrarNotificacion();
+
+            toppingInputs.forEach(input => input.checked = false);
+            salsaInputs.forEach(input => input.checked = false);
+            document.querySelectorAll('.sticker').forEach(s => s.classList.remove('show'));
+            salsaVisuals.forEach(v => v.classList.remove('show'));
+            updateSummary();
+        });
+    }
+
+    function actualizarVistaCarrito() {
+        carritoItemsList.innerHTML = '';
+        let granTotal = 0;
+
+        if (carritoDeCompras.length === 0) {
+            carritoContainer.style.display = 'none';
+            whatsappOrderBtn.style.display = 'none';
+        } else {
+            carritoContainer.style.display = 'block';
+            whatsappOrderBtn.style.display = 'inline-flex';
+
+            carritoDeCompras.forEach((item, index) => {
+                granTotal += item.precio;
+                let li = document.createElement('li');
+                li.style.margin = '6px 0';
+                li.innerHTML = `${item.descripcion} - <strong>L${item.precio}</strong> <button type="button" onclick="window.quitarDelCarrito(${index})" style="background:#e74c3c; color:white; border:none; border-radius:50%; width:20px; height:20px; font-size:11px; cursor:pointer; margin-left:8px;" title="Eliminar ítem">✕</button>`;
+                carritoItemsList.appendChild(li);
+            });
+        }
+
+        carritoGranTotal.textContent = `L${granTotal}`;
+
+        let mensajeWhatsApp = "Hola Huella Dulce, quiero hacer el siguiente pedido:\n\n";
+        carritoDeCompras.forEach((p, i) => {
+            mensajeWhatsApp += `${i + 1}. ${p.descripcion} (L${p.precio})\n`;
+        });
+        mensajeWhatsApp += `\n*Gran Total: L${granTotal}*`;
+        whatsappOrderBtn.href = `https://wa.me/50492222639?text=${encodeURIComponent(mensajeWhatsApp)}`;
+    }
+
+    window.quitarDelCarrito = function(index) {
+        carritoDeCompras.splice(index, 1);
+        actualizarVistaCarrito();
+    };
 
     baseButtons.forEach((btn) => {
         btn.addEventListener('click', () => selectBase(btn.dataset.base));
@@ -219,6 +288,5 @@ document.addEventListener('DOMContentLoaded', () => {
     toppingInputs.forEach((input) => input.addEventListener('change', updateSummary));
     salsaInputs.forEach((input) => input.addEventListener('change', updateSummary));
 
-    // Estado inicial
     selectBase('waffle');
 });
