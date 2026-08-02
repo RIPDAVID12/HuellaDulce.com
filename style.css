@@ -469,12 +469,16 @@ header nav ul li a:hover {
     transform: translateZ(20px); /* Eleva la foto del plato en el espacio 3D */
 }
 
-/* Capa contenedora de toppings 3D */
+/* Asegura que la capa flotante cubra exactamente el plato */
 .toppings-3d-layer {
     position: absolute;
-    inset: 0;
+    width: 82%;  /* Mismo tamaño relativo que tu .preview-img-3d */
+    height: 82%;
+    top: 9%;     /* Centrado exacto dentro del plato */
+    left: 9%;
     transform-style: preserve-3d;
     pointer-events: none;
+    z-index: 10; /* Asegura que quede por ENCIMA de la imagen */
 }
 
 /* Estilo individual de cada ingrediente flotante 3D */
@@ -1198,7 +1202,254 @@ header nav ul {
     visibility: visible;
     transform: translateY(0);
 }
+/* Ocultos por defecto */
+.sticker, .salsa-visual {
+    display: none;
+    position: absolute;
+    /* tus estilos de posicionamiento */
+}
 
+/* Se muestran únicamente cuando reciben la clase .show */
+.sticker.show, .salsa-visual.show {
+    display: block !important;
+}
 
+/* Colores/Filtros para las salsas */
+.salsa-dulce-visual.show {
+    background-color: rgba(210, 105, 30, 0.4); /* Color cajeta/dulce de leche */
+}
+.salsa-choco-visual.show {
+    background-color: rgba(60, 30, 15, 0.6); /* Color chocolate */
+}
+.salsa-leche-visual.show {
+    background-color: rgba(255, 255, 230, 0.5); /* Color condensada */
+}
+/* Asegura que los stickers y salsas se superpongan en la vista 3D */
+.plate {
+    position: relative;
+}
+
+.sticker, .salsa-visual {
+    position: absolute;
+    display: none; /* Se ocultan por defecto */
+}
+
+.sticker.show, .salsa-visual.show {
+    display: block; /* El JS activa la clase 'show' */
+}
+
+/* Notificación Toast */
+#toastNotificacion.mostrar {
+    display: block !important;
+}
+/* Estilos para el contenedor 3D */
+.plate {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+/* Capa transparente para bañar el plato con el color de la salsa */
+.salsa-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    border-radius: 50%;
+    transition: background 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+    mix-blend-mode: multiply; /* Hace que se fusione con la foto del waffle/crepa */
+}
+
+.salsa-overlay.active {
+    opacity: 0.55;
+}
+
+/* Contenedor de Emojis */
+.emojis-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    gap: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.emoji-topping {
+    font-size: 2rem;
+    filter: drop-shadow(2px 4px 6px rgba(0,0,0,0.3));
+    animation: popEmoji 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popEmoji {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
+}
+/* ==========================================
+   PLATO PREMIUM 3D
+========================================== */
+
+.customizer-3d {
+    perspective: 1400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+}
+
+.plate {
+    position: relative;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle at center,
+            #ffffff 0%,
+            #fdfdfd 60%,
+            #f1f1f1 100%);
+
+    border: 16px solid #fafafa;
+
+    box-shadow:
+        0 35px 50px rgba(0,0,0,.18),
+        inset 0 10px 15px rgba(255,255,255,.9),
+        inset 0 -15px 20px rgba(0,0,0,.08);
+
+    transform-style: preserve-3d;
+    transition: transform .15s ease-out;
+}
+
+/* Borde interior elegante */
+
+.plate::before{
+    content:"";
+    position:absolute;
+    inset:18px;
+    border-radius:50%;
+    border:3px solid rgba(255,255,255,.9);
+    pointer-events:none;
+}
+
+/* Centro del plato */
+
+.plate::after{
+    content:"";
+    position:absolute;
+    inset:48px;
+    border-radius:50%;
+    background:
+        radial-gradient(circle,
+        rgba(255,255,255,.95),
+        rgba(240,240,240,.7));
+    pointer-events:none;
+}
+
+/* ==========================================
+   IMAGEN DEL PRODUCTO
+========================================== */
+
+.img-wrapper{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%) translateZ(15px);
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+    overflow:hidden;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.25),
+        inset 0 0 20px rgba(0,0,0,.15);
+
+    z-index:3;
+}
+
+.preview-img-3d{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* ==========================================
+   SALSA SOLO EN EL BORDE
+========================================== */
+
+.salsa-overlay{
+    position:absolute;
+    inset:0;
+    border-radius:50%;
+    pointer-events:none;
+    opacity:0;
+    z-index:2;
+
+    mask:
+      radial-gradient(circle,
+      transparent 0 58%,
+      black 60% 100%);
+
+    -webkit-mask:
+      radial-gradient(circle,
+      transparent 0 58%,
+      black 60% 100%);
+}
+
+.salsa-overlay.active{
+    opacity:.9;
+}
+
+/* ==========================================
+   EMOJIS
+========================================== */
+
+.emoji-slot{
+    position:absolute;
+    z-index:5;
+
+    font-size:2.6rem;
+
+    opacity:0;
+    transform:scale(0);
+
+    transition:.3s;
+
+    filter:
+      drop-shadow(0 6px 8px rgba(0,0,0,.25));
+}
+
+.emoji-slot.active{
+    opacity:1;
+    transform:scale(1);
+}
+
+/* Distribución circular */
+
+.slot-tl{
+    top:55px;
+    left:55px;
+}
+
+.slot-tr{
+    top:55px;
+    right:55px;
+}
+
+.slot-bl{
+    bottom:55px;
+    left:55px;
+}
+
+.slot-br{
+    bottom:55px;
+    right:55px;
+}
 
 
