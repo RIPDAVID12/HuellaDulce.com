@@ -3,14 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huella Dulce - Postres Caseros y Antojos en Honduras</title>
-    <meta name="description" content="Disfruta de los mejores postres caseros, waffles, crepas, pan de pan y minidonas hechos con amor por Josué y Lilian en Huella Dulce.">
-    <meta name="keywords" content="postres caseros, waffles, crepas, minidonas, pan de pan, repostería, Huella Dulce, Honduras">
-    <meta name="author" content="Josué Zapata y Lilian Herrera">
-    <meta property="og:title" content="Huella Dulce - Postres Caseros">
-    <meta property="og:description" content="Marcando huella en cada antojo. ¡Arma tu antojo y pídelo hoy!">
-    <meta property="og:type" content="website">
-
+    <title>Nuestro Menú - Huella Dulce</title>
+    <meta name="description" content="Conoce el menú completo de Huella Dulce: waffles, crepas, pan de pan y minidonas con todos sus toppings y salsas.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
@@ -23,7 +17,7 @@
         <span>Pedir por WhatsApp</span>
     </a>
 
-<header>
+    <header>
         <div class="logo-container">
             <img src="img/laHuellaDulce-Photoroom.png" alt="Logo Huella Dulce" class="logo-img">
             <span class="logo-texto">Huella Dulce</span>
@@ -45,61 +39,73 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <div class="hero-texto">
-            <h1>Marcando Huella en cada antojo</h1>
-            <p>Hechos en casa con ingredientes premium y muchísimo amor por Josué & Lilian.</p>
-            <div class="hero-botones">
-                <a href="menu.html" class="btn-rosa">Ver Menú</a>
-                <a href="personaliza.html" class="btn-outline">Arma tu Antojo</a>
-            </div>
-        </div>
-        <div class="hero-imagen">
-            <img src="img/tentador.jpeg" alt="Postres tentadores">
-        </div>
-    </section>
+    <section class="menu-section">
+        <h2>Nuestros Caprichos</h2>
+        <p class="menu-subtitle">¡Elige tu favorito y pídelo al instante!</p>
 
-    <section class="teaser-section">
-        <h2>¿Qué se te antoja hoy?</h2>
-        <p class="menu-subtitle">Un vistazo a nuestros favoritos</p>
-        <div class="teaser-grid">
-            <div class="teaser-card">
+        <div class="menu-grid">
+            <div class="menu-card">
                 <img src="img/waffles.jpeg" alt="Waffles">
-                <h3>Waffles</h3>
-                <p>Desde L70</p>
+                <div>
+                    <h3>Waffles</h3>
+                    <p class="precio">L70</p>
+                    <p>Crema batida, banano y una salsa a elegir (dulce de leche, chocolate Hershey's o leche condensada).</p>
+                </div>
+                <a href="https://wa.me/50492222639?text=Hola,%20quiero%20ordenar%20unos%20Waffles" target="_blank" class="btn-comprar">Pedir Waffles</a>
             </div>
-            <div class="teaser-card">
+            <div class="menu-card">
                 <img src="img/crepas.jpeg" alt="Crepas">
-                <h3>Crepas</h3>
-                <p>L65 c/u</p>
+                <div>
+                    <h3>Crepas</h3>
+                    <p class="precio">L65 c/u</p>
+                    <p>Banano, Nutella y chocolate Hershey's, envueltos en una crepa fina y delicada.</p>
+                </div>
+                <a href="https://wa.me/50492222639?text=Hola,%20quiero%20ordenar%20unas%20Crepas" target="_blank" class="btn-comprar">Pedir Crepas</a>
             </div>
-            <div class="teaser-card">
-                <img src="img/minidonas.jpeg" alt="Minidonas">
-                <h3>Minidonas</h3>
-                <p>Desde L35</p>
-            </div>
-            <div class="teaser-card">
+            <div class="menu-card">
                 <img src="img/pandepan.jpeg" alt="Pan de Pan">
-                <h3>Pan de Pan</h3>
-                <p>Desde L50</p>
+                <div>
+                    <h3>Pan de Pan</h3>
+                    <p class="precio">L50 sencillo / L60 premium</p>
+                    <p>Nuestra receta tradicional. El premium lleva almendra y una salsa extra.</p>
+                </div>
+                <a href="https://wa.me/50492222639?text=Hola,%20quiero%20ordenar%20Pan%20de%20Pan" target="_blank" class="btn-comprar">Pedir Pan de Pan</a>
+            </div>
+            <div class="menu-card">
+                <img src="img/minidonas.jpeg" alt="Minidonas">
+                <div>
+                    <h3>Minidonas</h3>
+                    <p class="precio">Bandeja de 6 - L35 · 12 - L60 · 16 - L70 · 24 - L95</p>
+                    <p>Incluyen chispitas y una salsa (extras optativos).</p>
+                </div>
+                <a href="https://wa.me/50492222639?text=Hola,%20quiero%20ordenar%20Minidonas" target="_blank" class="btn-comprar">Pedir Minidonas</a>
             </div>
         </div>
-        <a href="menu.html" class="btn-comprar ver-mas">Ver menú completo</a>
+
+        <div class="extras-box">
+            <div class="extras-col">
+                <h4>Toppings</h4>
+                <ul>
+                    <li>Almendra - L10</li>
+                    <li>Fresas - L20</li>
+                    <li>Chispitas (sprinkles) - L5</li>
+                    <li>Galleta Oreo - L8</li>
+                </ul>
+            </div>
+            <div class="extras-col">
+                <h4>Salsas</h4>
+                <ul>
+                    <li>Dulce de leche</li>
+                    <li>Chocolate Hershey's</li>
+                    <li>Leche condensada</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="personaliza.html" class="btn-rosa ver-mas">¿Quieres armar tu propia combinación? Pruébalo aquí</a>
     </section>
 
-    <section class="cta-personaliza">
-        <div class="cta-texto">
-            <h2>Arma tu Antojo a tu manera</h2>
-            <p>Elige tu base, tus toppings y tu salsa favorita en nuestro armador interactivo, mira tu antojo en 3D y pide directo por WhatsApp.</p>
-            <a href="personaliza.html" class="btn-rosa">Ir al armador</a>
-        </div>
-        
-        <div class="cta-imagen-redonda">
-            <img src="img/minidonas.jpeg" alt="Personaliza tu antojo" style="border-radius: 50%; width: 180px; height: 180px; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
-        </div>
-    </section>
-
-    <footer>
+<footer>
         <h2>¿Listo para un antojo?</h2>
         
         <div class="contacto-info">

@@ -1,0 +1,1087 @@
+:root {
+    --azul-turquesa: #29b6d7;
+    --azul-claro: #e6f7fa;
+    --marron-chocolate: #5c3a21;
+    --rosa-dona: #ff9ebb;
+    --blanco-crema: #fdfbf7;
+    --texto-oscuro: #333333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--blanco-crema);
+    color: var(--texto-oscuro);
+    scroll-behavior: smooth;
+}
+
+h1, h2, h3 {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--marron-chocolate);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+li {
+    list-style: none;
+}
+
+.btn-rosa {
+    background-color: var(--rosa-dona);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    display: inline-block;
+}
+
+.btn-rosa:hover {
+    transform: scale(1.05);
+    background-color: #ff85a7;
+}
+
+.btn-outline {
+    border: 2px solid var(--azul-turquesa);
+    color: var(--azul-turquesa);
+    padding: 10px 23px;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.1rem;
+    display: inline-block;
+    transition: all 0.2s;
+}
+
+.btn-outline:hover {
+    background-color: var(--azul-turquesa);
+    color: white;
+}
+
+.ver-mas {
+    display: block;
+    width: fit-content;
+    margin: 40px auto 0;
+}
+
+/* =========================================================
+   CORRECCIÓN DEL HEADER Y MENÚ HAMBURGUESA
+   ========================================================= */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.logo-texto {
+    font-size: 22px;
+    font-weight: bold;
+    color: #4a3319;
+}
+
+/* El menú de navegación normal en computadoras */
+header nav ul {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+header nav ul li a:hover {
+    color: #e67e22; /* O el color rosado/principal de tu marca */
+}
+
+/* POR DEFECTO EN PC: El botón de hamburguesa se oculta por completo */
+.menu-toggle {
+    display: none;
+}
+
+/* =========================================================
+   CUANDO LA PANTALLA ES DE CELULAR (Menor o igual a 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Aparece solo en celulares */
+        background: none;
+        border: none;
+        font-size: 26px;
+        cursor: pointer;
+        color: #333;
+    }
+
+    /* Se oculta el menú horizontal de la PC */
+    header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    /* Cuando JavaScript activa la clase, el menú se despliega verticalmente */
+    header nav.active {
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+/* --- HERO --- */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 50px;
+}
+
+.hero-texto {
+    flex: 1;
+}
+
+.hero-texto h1 {
+    font-size: 3.5rem;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-texto p {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.hero-botones {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.hero-imagen {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-imagen img {
+    width: 100%;
+    max-width: 450px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+/* --- TEASER (inicio) --- */
+.teaser-section {
+    background-color: var(--azul-claro);
+    padding: 70px 5%;
+    text-align: center;
+}
+
+.teaser-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.teaser-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    max-width: 1100px;
+    margin: 40px auto 0;
+}
+
+.teaser-card {
+    background: white;
+    border-radius: 20px;
+    padding: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+}
+
+.teaser-card:hover {
+    transform: translateY(-8px);
+}
+
+.teaser-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 12px;
+}
+
+.teaser-card h3 {
+    font-size: 1.3rem;
+}
+
+.teaser-card p {
+    color: var(--azul-turquesa);
+    font-weight: 600;
+}
+
+/* --- CTA personaliza (inicio) --- */
+.cta-personaliza {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 70px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.cta-texto h2 {
+    font-size: 2.2rem;
+    margin-bottom: 15px;
+}
+
+.cta-texto p {
+    color: #555;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.cta-emoji {
+    font-size: 5rem;
+}
+
+/* --- MENÚ / TIENDA --- */
+.menu-section {
+    background-color: var(--azul-claro);
+    padding: 80px 5%;
+    text-align: center;
+}
+
+.menu-section h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+}
+
+.menu-subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 50px;
+    color: #555;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu-card:hover {
+    transform: translateY(-10px);
+}
+
+.menu-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.menu-card h3 {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
+.menu-card .precio {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--azul-turquesa);
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.menu-card p {
+    font-size: 1rem;
+    color: #666;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.btn-comprar {
+    background-color: var(--azul-turquesa);
+    color: white;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 0.95rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-comprar:hover {
+    background-color: #219ab5;
+}
+
+/* --- Extras (toppings y salsas) --- */
+.extras-box {
+    max-width: 700px;
+    margin: 50px auto 0;
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px 40px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+    text-align: left;
+}
+
+.extras-col h4 {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--marron-chocolate);
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+}
+
+.extras-col ul li {
+    color: #555;
+    padding: 3px 0;
+}
+
+/* --- PÁGINA ARMA TU ANTOJO --- */
+.personaliza-hero {
+    text-align: center;
+    padding: 60px 5% 20px;
+}
+
+.personaliza-hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+.customizer-wrap {
+    max-width: 1150px;
+    margin: 0 auto;
+    padding: 20px 5% 80px;
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- VISTA 3D Y ESTÉTICA DE PLATO --- */
+.customizer-3d {
+    flex: 1;
+    min-width: 300px;
+    max-width: 450px;
+    perspective: 1200px;
+    text-align: center;
+    background: white;
+    padding: 30px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(92, 58, 33, 0.08);
+}
+
+.plate {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+    transform-style: preserve-3d;
+    transition: transform 0.15s ease-out;
+    transform: rotateX(10deg) rotateY(0deg);
+}
+
+.plate-base {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle at 50% 45%, #ffffff 55%, #f4f4f4 75%, #e2e2e2 100%);
+    border-radius: 50%;
+    box-shadow: 0 20px 35px rgba(92, 58, 33, 0.2), inset 0 0 0 6px #ffffff, inset 0 0 0 9px #dcdcdc;
+    transform: translate(-50%, -50%) translateZ(-15px);
+}
+
+.preview-img-3d {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 190px;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) translateZ(15px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.18);
+    transition: opacity 0.25s ease;
+}
+
+.stickers {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.sticker {
+    position: absolute;
+    font-size: 1.6rem;
+    opacity: 0;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 8px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    transform: translateZ(35px) scale(0.5);
+    transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.sticker.show {
+    opacity: 1;
+    transform: translateZ(35px) scale(1);
+}
+
+.sticker-fresa { top: 8%; left: 25%; }
+.sticker-almendra { top: 12%; right: 18%; }
+.sticker-chispitas { bottom: 12%; left: 18%; }
+.sticker-oreo { bottom: 8%; right: 22%; }
+
+.salsa-drip {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    opacity: 0;
+    transform: translateZ(20px);
+    transition: opacity 0.25s ease;
+    pointer-events: none;
+}
+
+.salsa-drip.show { opacity: 0.45; }
+
+.salsa-dulce-visual { background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(193, 122, 61, 0.8) 85%); }
+.salsa-choco-visual { background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(74, 43, 24, 0.85) 85%); }
+.salsa-leche-visual { background: radial-gradient(circle at 50% 45%, transparent 35%, rgba(243, 229, 200, 0.9) 85%); }
+
+.hint {
+    margin-top: 20px;
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* --- PANEL DE OPCIONES --- */
+.customizer-panel {
+    flex: 1.2;
+    min-width: 320px;
+    background: white;
+    padding: 35px;
+    border-radius: 30px;
+    box-shadow: 0 10px 30px rgba(92, 58, 33, 0.08);
+}
+
+.customizer-panel h3 {
+    font-size: 1.2rem;
+    margin: 22px 0 10px;
+    color: var(--marron-chocolate);
+}
+
+.customizer-panel h3:first-child {
+    margin-top: 0;
+}
+
+.base-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.base-btn {
+    background-color: #faf8f5;
+    border: 2px solid #eee;
+    border-radius: 16px;
+    padding: 10px 18px;
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1rem;
+    color: var(--marron-chocolate);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.base-btn:hover {
+    border-color: var(--rosa-dona);
+    background-color: #fff;
+}
+
+.base-btn.active {
+    border-color: var(--azul-turquesa);
+    background-color: var(--azul-claro);
+    transform: translateY(-2px);
+}
+
+.variant-box {
+    margin-top: 12px;
+}
+
+.variant-box.hidden {
+    display: none;
+}
+
+.variant-box select {
+    padding: 10px 15px;
+    border-radius: 14px;
+    border: 2px solid #eee;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.95rem;
+    width: 100%;
+    outline: none;
+    background-color: #faf8f5;
+    color: var(--texto-oscuro);
+}
+
+.toppings-selector,
+.salsa-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.topping-label {
+    position: relative;
+}
+
+.topping-label input {
+    position: absolute;
+    opacity: 0;
+    width: 1px;
+    height: 1px;
+}
+
+.topping-label span {
+    display: inline-block;
+    background-color: #faf8f5;
+    border: 2px solid #eee;
+    border-radius: 20px;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--texto-oscuro);
+}
+
+.topping-label span:hover {
+    border-color: var(--rosa-dona);
+}
+
+.topping-label input:checked + span {
+    background-color: var(--rosa-dona);
+    border-color: var(--rosa-dona);
+    color: white;
+}
+
+.topping-label em {
+    font-style: normal;
+    opacity: 0.85;
+}
+
+.order-summary {
+    margin-top: 25px;
+    background-color: var(--azul-claro);
+    border-radius: 16px;
+    padding: 18px 20px;
+}
+
+.order-summary #summaryText {
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 6px;
+}
+
+.order-summary .total {
+    font-family: 'Fredoka', sans-serif;
+    font-size: 1.4rem;
+    color: var(--marron-chocolate);
+}
+
+.order-summary .total span {
+    color: var(--azul-turquesa);
+}
+
+.btn-pedido-personalizado {
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+
+/* --- SECCIÓN NOSOTROS --- */
+.nosotros {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 50px;
+}
+
+.nosotros-imagen {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nosotros-imagen img {
+    width: 100%;
+    max-width: 400px;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.nosotros-texto {
+    flex: 1;
+}
+
+.nosotros-texto h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.nosotros-texto p {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: #444;
+    margin-bottom: 15px;
+}
+
+/* --- PÁGINA CONTACTO --- */
+.contacto-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 70px 5%;
+    text-align: center;
+}
+
+.contacto-section h2 {
+    font-size: 2.6rem;
+}
+
+.contacto-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.contacto-card {
+    background-color: white;
+    border-radius: 20px;
+    padding: 30px 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.contacto-card:hover {
+    transform: translateY(-8px);
+}
+
+.contacto-icono {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacto-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 2px;
+}
+
+.contacto-card p {
+    color: var(--azul-turquesa);
+    font-weight: 600;
+}
+
+.contacto-extra {
+    margin-top: 40px;
+    color: #666;
+}
+
+.contacto-extra p {
+    margin: 6px 0;
+}
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--marron-chocolate);
+    color: white;
+    text-align: center;
+    padding: 40px 5%;
+}
+
+footer h2 {
+    color: var(--azul-turquesa);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.contacto-info {
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.contacto-info p {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+.copyright {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 20px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* --- Botón flotante de WhatsApp --- */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #25d366;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-family: 'Fredoka', sans-serif;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.2s;
+}
+
+.whatsapp-float:hover {
+    transform: scale(1.05);
+}
+
+.whatsapp-icon-svg {
+    width: 24px;
+    height: 24px;
+    fill: #ffffff;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .hero, .nosotros {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+        gap: 30px;
+    }
+    .hero-texto h1 {
+        font-size: 2.5rem;
+    }
+    .extras-box {
+        flex-direction: column;
+        text-align: center;
+    }
+    .cta-personaliza {
+        flex-direction: column;
+        text-align: center;
+    }
+    .customizer-wrap {
+        flex-direction: column;
+        align-items: center;
+    }
+    .customizer-3d {
+    perspective: 1000px; /* Vital para darle profundidad real 3D */
+}
+
+.plate {
+    transition: transform 0.1s ease-out;
+    transform-style: preserve-3d;
+    box-shadow: 0 20px 30px rgba(0,0,0,0.15); /* Sombra que acentúa el 3D */
+}
+
+.preview-img-3d {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    /* Opcional: baja un poco la opacidad de la imagen base si tus stickers/salsas quedan por debajo, 
+       oajusta el z-index de los elementos flotantes para que no queden tapados */
+}
+/* =========================================================
+   ESTILOS RESPONSIVOS - HUELLA DULCE
+   ========================================================= */
+
+/* Estilos base generales para evitar desbordamientos */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* 1. NAVEGACIÓN RESPONSIVA (Menú superior) */
+header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+}
+
+header nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* 2. CONTENEDOR PRINCIPAL DEL ARMA TU ANTOJO (Responsivo en dos columnas o una en móvil) */
+.customizer-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* Vista previa 3D / Interactiva adaptable */
+.customizer-3d {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Panel de opciones adaptable */
+.customizer-panel {
+    flex: 1;
+    min-width: 280px;
+    max-width: 500px;
+    background: #fff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Selectores de base y toppings adaptables en filas o columnas fluidas */
+.base-selector, .toppings-selector, .salsa-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.base-btn {
+    flex: 1;
+    min-width: 110px;
+    padding: 12px;
+    text-align: center;
+}
+
+.topping-label {
+    flex: 1;
+    min-width: 130px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #f9f9f9;
+    padding: 10px 12px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Botón flotante de WhatsApp adaptable para móviles */
+.whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: #25d366;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+/* 3. MEDIA QUERIES PARA PANTALLAS PEQUEÑAS (Móviles menores a 768px) */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    header nav ul {
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .customizer-wrap {
+        flex-direction: column;
+        align-items: center;
+        margin: 20px auto;
+    }
+
+    .plate {
+        width: 240px;
+        height: 240px;
+    }
+
+    .personaliza-hero h1 {
+        font-size: 28px;
+    }
+
+    .whatsapp-float span {
+        display: none; /* En pantallas muy pequeñas de celular, deja solo el ícono flotante para ahorrar espacio */
+    }
+    
+    .whatsapp-float {
+        padding: 12px;
+        border-radius: 50%;
+    }
+}
+/* Por defecto, el botón de hamburguesa se oculta en pantallas grandes */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Estilos responsivos para móviles */
+@media (max-width: 768px) {
+    header {
+        position: relative;
+        justify-content: space-between;
+    }
+
+    .menu-toggle {
+        display: block; /* Se muestra en celulares */
+    }
+
+    /* Ocultamos el menú por defecto en móviles */
+    header nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #ffffff;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        padding: 20px;
+        z-index: 100;
+    }
+
+    /* Clase que activaremos con JavaScript para mostrarlo */
+    header nav.active {
+        display: block;
+    }
+
+    header nav ul {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+}
+
+
+
+}
