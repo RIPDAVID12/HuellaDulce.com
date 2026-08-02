@@ -87,7 +87,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const variantBox = document.getElementById('variantBox');
     const summaryText = document.getElementById('summaryText');
     const totalPriceEl = document.getElementById('totalPrice');
-    
+
     const toppingInputs = document.querySelectorAll('.toppings-selector input');
     const salsaInputs = document.querySelectorAll('.salsa-selector input');
     const salsaVisuals = document.querySelectorAll('.salsa-visual');
@@ -102,6 +102,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let currentVariantLabel = '';
     let currentVariantPrice = bases.waffle.price;
     let carritoDeCompras = [];
+
+    // URL de tu Webhook en Make
+    const WEBHOOK_URL = "https://hook.eu1.make.com/9jdsvkq580xfwq89j4e1iqsku3e2c8x1";
 
     function buildVariantSelector(baseKey) {
         variantBox.innerHTML = '';
@@ -268,7 +271,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         carritoGranTotal.textContent = `L${granTotal}`;
 
+        // Obtener datos del cliente si existen
+        const clienteNombre = document.getElementById('clienteNombre')?.value.trim() || "";
+        const clienteTelefono = document.getElementById('clienteTelefono')?.value.trim() || "";
+
         let mensajeWhatsApp = "Hola Huella Dulce, quiero hacer el siguiente pedido:\n\n";
+        if (clienteNombre) mensajeWhatsApp += ` *Cliente:* ${clienteNombre}\n`;
+        if (clienteTelefono) mensajeWhatsApp += ` *Teléfono:* ${clienteTelefono}\n\n`;
+
         carritoDeCompras.forEach((p, i) => {
             mensajeWhatsApp += `${i + 1}. ${p.descripcion} (L${p.precio})\n`;
         });
@@ -276,7 +286,53 @@ document.addEventListener('DOMContentLoaded', () => {
         whatsappOrderBtn.href = `https://wa.me/50492222639?text=${encodeURIComponent(mensajeWhatsApp)}`;
     }
 
-    window.quitarDelCarrito = function(index) {
+    // Actualizar enlace de WhatsApp cuando escriba en los inputs
+    document.getElementById('clienteNombre')?.addEventListener('input', actualizarVistaCarrito);
+    document.getElementById('clienteTelefono')?.addEventListener('input', actualizarVistaCarrito);
+
+    // Enviar datos a Make al presionar el botón de WhatsApp
+    if (whatsappOrderBtn) {
+        whatsappOrderBtn.addEventListener('click', () => {
+            if (carritoDeCompras.length > 0) {
+                const nombreIngresado = document.getElementById('clienteNombre')?.value.trim() || "Cliente Web";
+                const telefonoIngresado = document.getElementById('clienteTelefono')?.value.trim() || "No especificado";
+                let granTotal = carritoDeCompras.reduce((acc, curr) => acc + curr.precio, 0);
+
+                registrarPedidoCRM(
+                    { nombre: nombreIngresado, telefono: telefonoIngresado },
+                    carritoDeCompras,
+                    granTotal
+                );
+            }
+        });
+    }
+
+    async function registrarPedidoCRM(datosCliente, carritoItems, totalPedido) {
+        const resumenPedido = carritoItems.map((item, i) => 
+            `${i + 1}. ${item.descripcion} (L${item.precio})`
+        ).join('\n');
+
+        const payload = {
+            fecha: new Date().toLocaleString("es-HN"),
+            cliente: datosCliente.nombre || "Cliente Web",
+            telefono: datosCliente.telefono || "No especificado",
+            pedido: resumenPedido,
+            total: totalPedido,
+            notas: datosCliente.notas || "Pedido desde Arma tu Antojo"
+        };
+
+        try {
+            fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            });
+        } catch (error) {
+            console.error("Error al registrar en CRM:", error);
+        }
+    }
+
+    window.quitarDelCarrito = function (index) {
         carritoDeCompras.splice(index, 1);
         actualizarVistaCarrito();
     };
