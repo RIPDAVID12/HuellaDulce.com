@@ -25,7 +25,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="img/laHuellaDulce-Photoroom.png" alt="Logo Huella Dulce" class="logo-img">
+            <img src="img/laHuellaDulce-Photoroom.webp" alt="Logo Huella Dulce" class="logo-img">
             <span class="logo-texto">Huella Dulce</span>
         </div>
 
@@ -38,10 +38,10 @@
         <nav id="navMenu">
             <ul>
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="personaliza.html">Arma tu Antojo</a></li>
-                <li><a href="menu.html">Menú</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="pages/personaliza.html">Arma tu Antojo</a></li>
+                <li><a href="pages/menu.html">Menú</a></li>
+                <li><a href="pages/nosotros.html">Nosotros</a></li>
+                <li><a href="pages/contacto.html">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -51,12 +51,12 @@
             <h1>Marcando Huella en cada antojo</h1>
             <p>Hechos en casa con ingredientes premium y muchísimo amor por Josué & Lilian.</p>
             <div class="hero-botones">
-                <a href="menu.html" class="btn-rosa">Ver Menú</a>
-                <a href="personaliza.html" class="btn-outline">Arma tu Antojo</a>
+                <a href="pages/menu.html" class="btn-rosa">Ver Menú</a>
+                <a href="pages/personaliza.html" class="btn-outline">Arma tu Antojo</a>
             </div>
         </div>
         <div class="hero-imagen">
-            <img src="img/tentador.jpeg" alt="Postres tentadores">
+            <img src="img/tentador.webp" alt="Postres tentadores" fetchpriority="high">
         </div>
     </section>
 
@@ -65,38 +65,38 @@
         <p class="menu-subtitle">Un vistazo a nuestros favoritos</p>
         <div class="teaser-grid">
             <div class="teaser-card">
-                <img src="img/waflesnew.jpeg" alt="Waffles">
+                <img src="img/waflesnew.webp" alt="Waffles" loading="lazy" decoding="async">
                 <h3>Waffles</h3>
                 <p>Desde L70</p>
             </div>
             <div class="teaser-card">
-                <img src="img/crepasnew.jpeg" alt="Crepas">
+                <img src="img/crepasnew.webp" alt="Crepas" loading="lazy" decoding="async">
                 <h3>Crepas</h3>
                 <p>L65 c/u</p>
             </div>
             <div class="teaser-card">
-                <img src="img/minidonas.jpeg" alt="Minidonas">
+                <img src="img/minidonas.webp" alt="Minidonas" loading="lazy" decoding="async">
                 <h3>Minidonas</h3>
                 <p>Desde L35</p>
             </div>
             <div class="teaser-card">
-                <img src="img/pandepan.jpeg" alt="Pan de Pan">
+                <img src="img/pandepan.webp" alt="Pan de Pan" loading="lazy" decoding="async">
                 <h3>Pan de Pan</h3>
                 <p>Desde L50</p>
             </div>
         </div>
-        <a href="menu.html" class="btn-comprar ver-mas">Ver menú completo</a>
+        <a href="pages/menu.html" class="btn-comprar ver-mas">Ver menú completo</a>
     </section>
 
     <section class="cta-personaliza">
         <div class="cta-texto">
             <h2>Arma tu Antojo a tu manera</h2>
             <p>Elige tu base, tus toppings y tu salsa favorita en nuestro armador interactivo, mira tu antojo en 3D y pide directo por WhatsApp.</p>
-            <a href="personaliza.html" class="btn-rosa">Ir al armador</a>
+            <a href="pages/personaliza.html" class="btn-rosa">Ir al armador</a>
         </div>
         
         <div class="cta-imagen-redonda">
-            <img src="img/minidonas.jpeg" alt="Personaliza tu antojo" style="border-radius: 50%; width: 180px; height: 180px; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
+            <img src="img/minidonas.webp" alt="Personaliza tu antojo" loading="lazy" decoding="async" style="border-radius: 50%; width: 180px; height: 180px; object-fit: cover; box-shadow: 0 10px 25px rgba(0,0,0,0.1);">
         </div>
     </section>
 
@@ -118,6 +118,7 @@
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/cart.js"></script>
 </body>
 </html>

@@ -436,12 +436,29 @@ header nav ul li a:hover {
    ========================================================= */
 
 .customizer-3d {
-    perspective: 1200px; /* Profundidad tridimensional */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     margin: 20px 0;
+}
+
+.canvas-3d-container {
+    width: 100%;
+    max-width: 420px;
+    height: 380px;
+    border-radius: 24px;
+    background: radial-gradient(circle at center, #ffffff 0%, #fdfbf7 70%, #faeee5 100%);
+    box-shadow: 0 15px 35px rgba(92, 58, 33, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    position: relative;
+    overflow: hidden;
+    touch-action: none;
+}
+
+.canvas-3d-container canvas {
+    width: 100% !important;
+    height: 100% !important;
+    outline: none;
 }
 
 .plate {
@@ -1450,6 +1467,25 @@ header nav ul {
 .slot-br{
     bottom:55px;
     right:55px;
+}
+
+/* =========================================================
+   ACCESIBILIDAD: ANIMACIONES REDUCIDAS
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .teaser-card:hover,
+    .menu-card:hover,
+    .btn-rosa:hover,
+    .btn-outline:hover {
+        transform: none !important;
+    }
 }
 
 
